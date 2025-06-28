@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Test - HEM Petroleum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .logo-test {
+            text-align: center;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            margin: 10px 0;
+        }
+        .sidebar-test {
+            background: linear-gradient(180deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        function handleLogoError(img) {
+            console.log('Logo error for:', img.src);
+            if (img.src.includes('logo.png')) {
+                img.src = img.src.replace('logo.png', 'logo.jpg');
+            } else if (img.src.includes('logo.jpg')) {
+                img.src = img.src.replace('logo.jpg', 'logo.svg');
+            } else if (img.src.includes('logo.svg')) {
+                img.src = img.src.replace('logo.svg', 'logo.gif');
+            } else {
+                img.style.display = 'none';
+                img.parentElement.innerHTML += '<div style="color: red; font-weight: bold;">❌ Logo not found</div>';
+            }
+        }
+        
+        function testLogoLoad() {
+            console.log('Testing logo load...');
+        }
+    </script>
+</head>
+<body>
+    <h1>🧪 HEM Petroleum Logo Test</h1>
+    
+    <div class="test-container">
+        <h2>Logo Test Results</h2>
+        <p>This page tests if your logo files are accessible and display correctly.</p>
+    </div>
+    
+    <div class="test-container">
+        <h3>Direct Logo Tests</h3>
+        
+        <div class="logo-test">
+            <h4>PNG Logo</h4>
+            <img src="static/images/logo.png" 
+                 alt="Logo PNG" 
+                 style="max-height: 60px; max-width: 120px; object-fit: contain;"
+                 onload="console.log('PNG loaded successfully')"
+                 onerror="console.log('PNG failed to load'); handleLogoError(this)">
+        </div>
+        
+        <div class="logo-test">
+            <h4>JPG Logo</h4>
+            <img src="static/images/logo.jpg" 
+                 alt="Logo JPG" 
+                 style="max-height: 60px; max-width: 120px; object-fit: contain;"
+                 onload="console.log('JPG loaded successfully')"
+                 onerror="console.log('JPG failed to load'); this.style.display='none';">
+        </div>
+        
+        <div class="logo-test">
+            <h4>SVG Logo</h4>
+            <img src="static/images/logo.svg" 
+                 alt="Logo SVG" 
+                 style="max-height: 60px; max-width: 120px; object-fit: contain;"
+                 onload="console.log('SVG loaded successfully')"
+                 onerror="console.log('SVG failed to load'); this.style.display='none';">
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Sidebar Simulation</h3>
+        <div class="sidebar-test">
+            <img src="static/images/logo.png" 
+                 alt="HEM Petroleum" 
+                 style="max-height: 60px; max-width: 120px; object-fit: contain; margin-bottom: 8px;"
+                 onerror="handleLogoError(this)">
+            <div style="font-size: 1.2rem; font-weight: 600;">HEM Petroleum</div>
+        </div>
+    </div>
+    
+    <div class="test-container">
+        <h3>Instructions</h3>
+        <ol>
+            <li>Open this file in a web browser</li>
+            <li>Check if the logos display correctly above</li>
+            <li>Open browser's developer tools (F12) and check the Console for any errors</li>
+            <li>If logos display here, they should work in your Flask application</li>
+        </ol>
+        
+        <p><strong>Note:</strong> This test accesses images directly from the file system. In your Flask app, 
+        the static files are served by Flask's static file handler.</p>
+    </div>
+</body>
+</html>
